@@ -6,7 +6,8 @@ pipeline{
                     stage('compile-api'){
                         agent {
                             docker {
-                                image 'maven:3-amazoncorretto-20'
+                                image 'maven:3.8.5-openjdk-17'
+                                /* image 'maven:3-amazoncorretto-20' */
                                 reuseNode true
                             }
                         }
