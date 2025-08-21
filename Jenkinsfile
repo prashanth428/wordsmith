@@ -2,12 +2,12 @@ pipeline{
         agent any
         stages{   
                 stage('travy-FS-scan'){
-                    agent {
+                    /* agent {
                         docker{
                             image 'aquasec/trivy:canary'
                             reuseNode true
                             }
-                    }
+                    } */
                     steps{
                         sh 'docker run aquasec/trivy fs .'
 
