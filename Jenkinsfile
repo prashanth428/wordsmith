@@ -37,6 +37,7 @@ pipeline{
                     steps{
                         sh '''
                         cd web
+                        go build dispatcher.go
                         go mod init
                         go test
                         cd ..
