@@ -1,11 +1,11 @@
 pipeline{
         agent any
-        stages{
-                
-                stage('travy'){
+        stages{   
+                stage('travy-FS-scan'){
                     agent {
                         docker{
                             image 'aquasec/trivy'
+                            reuseNode true
                             }
                     steps{
                         sh 'travy --version'
