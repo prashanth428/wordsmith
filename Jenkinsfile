@@ -2,15 +2,17 @@ pipeline{
         agent any
         stages{
                 stage('Compaile'){
-                stage('compile-api'){
+                parallel{
+                    stage('compile-api'){
                     steps{
-                        echo 'this is the compail stage'
+                        echo 'this is the compail stage of api'
                     }
                 }
                 stage('compile-web'){
                     steps{
-                        echo 'this is the compail stage'
+                        echo 'this is the compail stage of web'
                     }
+                }
                 }
                 }
                 stage('test'){
