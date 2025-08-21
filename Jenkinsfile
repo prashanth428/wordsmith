@@ -4,7 +4,7 @@ pipeline{
                 stage('travy-FS-scan'){
                     agent {
                         docker{
-                            image 'aquasec/trivy'
+                            image 'aquasec/trivy:canary'
                             reuseNode true
                             }
                     }
