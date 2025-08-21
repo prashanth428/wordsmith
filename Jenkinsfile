@@ -12,7 +12,7 @@ pipeline{
                         }
                     steps{
                         sh '''
-                            cd /api
+                            cd api
                             mvn compile
                             mvn test
                         '''
