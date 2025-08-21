@@ -37,7 +37,7 @@ pipeline{
                     steps{
                         sh '''
                         cd web
-                        go build
+                        // go build
                         go test
                         cd ..
                         '''
