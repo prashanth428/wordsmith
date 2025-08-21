@@ -7,6 +7,7 @@ pipeline{
                             image 'aquasec/trivy'
                             reuseNode true
                             }
+                    }
                     steps{
                         sh 'travy --version'
                         sh 'travy fs .'
