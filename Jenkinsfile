@@ -37,8 +37,8 @@ pipeline{
                     steps{
                         sh '''
                         cd web
-                        go build -o webapp .
                         go mod init
+                        go build -o webapp .
                         go test
                         cd ..
                         '''
