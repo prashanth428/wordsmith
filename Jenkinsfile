@@ -2,12 +2,6 @@ pipeline{
         agent any
         stages{   
                 stage('travy-FS-scan'){
-                    /* agent {
-                        docker{
-                            image 'aquasec/trivy:canary'
-                            reuseNode true
-                            }
-                    } */
                     steps{
                         sh 'docker run aquasec/trivy fs .'
 
@@ -29,13 +23,24 @@ pipeline{
                             cd api
                             mvn compile
                             mvn test
+                            cd ..
                         '''
                     }
                 }
                 stage('compile-web'){
-
+                    agent{
+                        docker{
+                            image 'golang:alpine'
+                            reuseNode true
+                        }
+                    }
                     steps{
-                        echo 'this is the compail stage of web'
+                        sh '''
+                        cd web
+                        go build
+                        go test
+                        cd ..
+                        '''
                     }
                 }
                 }
