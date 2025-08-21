@@ -30,14 +30,14 @@ pipeline{
                 stage('compile-web'){
                     agent{
                         docker{
-                            image 'golang:alpine3.22'
+                            image 'golang:latest'
                             reuseNode true
                         }
                     }
                     steps{
                         sh '''
                         cd web
-                        go build dispatcher.go
+                        go build -o webapp .
                         go mod init
                         go test
                         cd ..
