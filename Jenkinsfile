@@ -14,7 +14,7 @@ pipeline{
 
                     }                
                 }
-                }
+                
 
                 stage('Compaile'){
                 parallel{
