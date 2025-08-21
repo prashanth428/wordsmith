@@ -10,7 +10,7 @@ pipeline{
                     }
                     steps{
                         sh 'travy --version'
-                        sh 'travy fs .'
+                        sh 'docker run aquasec/trivy fs .'
 
                     }                
                 }
