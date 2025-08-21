@@ -4,8 +4,18 @@ pipeline{
                 stage('Compaile'){
                 parallel{
                     stage('compile-api'){
+                        agent {
+                            docker {
+                                image 'maven:3-amazoncorretto-20'
+                                reuseNode true
+                            }
+                        }
                     steps{
-                        echo 'this is the compail stage of api'
+                        sh '''
+                            cd /api
+                            mvn compile
+                            mvn test
+                        '''
                     }
                 }
                 stage('compile-web'){
