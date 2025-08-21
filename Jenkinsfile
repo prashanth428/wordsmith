@@ -1,11 +1,17 @@
 pipeline{
         agent any
         stages{
-                stage('compile'){
+                stage('Compaile'){
+                stage('compile-api'){
                     steps{
                         echo 'this is the compail stage'
                     }
-                    
+                }
+                stage('compile-web'){
+                    steps{
+                        echo 'this is the compail stage'
+                    }
+                }
                 }
                 stage('test'){
                     steps{
