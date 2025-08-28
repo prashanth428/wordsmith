@@ -38,6 +38,7 @@ pipeline{
                         sh '''
                         cd web
                         go version
+                        go mod init
                         go build ./web/dispatcher.go
                         '''
                     }
