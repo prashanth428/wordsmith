@@ -30,7 +30,7 @@ pipeline{
                 stage('compile-web'){
                     agent{
                         docker{
-                            image 'golang:latest'
+                            image 'golang:alpine'
                             reuseNode true
                         }
                     }
