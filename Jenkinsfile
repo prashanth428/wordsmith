@@ -38,7 +38,7 @@ pipeline{
                     steps{
                         sh '''
                         go version
-                        ls ./web -la
+                        go build ./web/dispatcher.go
                         '''
                     }
                 }
