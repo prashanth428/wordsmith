@@ -54,7 +54,7 @@ pipeline{
                         withSonarQubeEnv('SonarQube_Server'){
                             sh '''
                                 echo 'SonarQube_Server'
-                                ${SONNAR_HOME}/bin/server/sonar-scanner -Dsonar.projectName=wordsmith -Dsonar.projectKey=wordsmith -Dsonar.sources=. -Dsonar.java.bninaries=./api/
+                                ${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectName=wordsmith -Dsonar.projectKey=wordsmith -Dsonar.sources=. -Dsonar.java.bninaries=./api/
                             '''
 
                         }
