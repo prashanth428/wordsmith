@@ -53,7 +53,8 @@ pipeline{
                     steps{
                         withSonarQubeEnv('SonarQube_Server'){
                             sh '''
-                                echo ${SonarQube_Server}
+                                echo $SonarQube_Server
+                                ${SCANNER_HOME}/bin/sonar-scanner -version
                                 ${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectName=wordsmith -Dsonar.projectKey=wordsmith -Dsonar.sources=. -Dsonar.java.bninaries=./api/
                             '''
 
