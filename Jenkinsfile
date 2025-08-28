@@ -28,6 +28,9 @@ pipeline{
                     }
                 }
                 stage('compile-web'){
+                            environment {
+            GOCACHE = "${WORKSPACE}/.go-cache" // Or any other writable path within the workspace
+        }
                     agent{
                         docker{
                             image 'golang:alpine3.21'
