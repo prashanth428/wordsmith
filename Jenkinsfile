@@ -31,13 +31,14 @@ pipeline{
                     agent{
                         docker{
                             image 'golang:alpine'
+                            args '-v $HOME/.ssh:/root/.ssh -v $(pwd):/app'
                             reuseNode true
                         }
                     }
                     steps{
                         sh '''
                         go version
-                        go install
+                        go mod tidy
                         go build /web/dispatcher.go
                         '''
                     }
