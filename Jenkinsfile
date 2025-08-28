@@ -3,8 +3,7 @@ pipeline{
         stages{   
                 stage('travy-FS-scan'){
                     steps{
-                        sh 'docker run aquasec/trivy fs .'
-
+                        sh 'docker run aquasec/trivy repo ./'
                     }                
                 }
                 
@@ -28,9 +27,9 @@ pipeline{
                     }
                 }
                 stage('compile-web'){
-                            environment {
-            GOCACHE = "${WORKSPACE}/.go-cache" // Or any other writable path within the workspace
-        }
+                    environment {
+                        GOCACHE = "${WORKSPACE}/.go-cache" // Or any other writable path within the workspace
+                    }
                     agent{
                         docker{
                             image 'golang:alpine3.21'
@@ -49,19 +48,24 @@ pipeline{
                 }
                 }
                 stage('test'){
-                    steps{
-                        echo 'this is the test stage'
-                        }
-                }
+                    parallel{
                 stage('sonarqube'){
                     steps{
-                        echo 'This is the sonarqube scan stage'
+                        withSonarQubeEnv('SonarQube_Server'){
+                            sh '''
+                                echo 'SonarQube_Server'
+                                ${SONNAR_HOME}/bin/server/sonar-scanner -Dsonar.projectName=wordsmith -Dsonar.projectKey=wordsmith -Dsonar.sources=. -Dsonar.java.bninaries=./api/
+                            '''
+
+                        }
                     }
                 }
                 stage('travy'){
                     steps{
-                        echo 'this is travy scan stage'
+                   sh 'docker run aquasec/trivy repo ./'     
                     }                
+                }
+                    }
                 }
                 stage('qualitygate'){
                     steps{
