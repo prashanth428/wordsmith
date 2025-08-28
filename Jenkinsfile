@@ -37,6 +37,7 @@ pipeline{
                     steps{
                         sh '''
                         go version
+                        go mod init
                         go build /web/dispatcher.go
                         '''
                     }
