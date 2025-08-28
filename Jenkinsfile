@@ -1,5 +1,8 @@
 pipeline{
         agent any
+        environment{
+            SCANNER_HOME=tool 'SonarQube_Scanner'
+        }
         stages{   
                 stage('travy-FS-scan'){
                     steps{
@@ -54,7 +57,7 @@ pipeline{
                         withSonarQubeEnv('SonarQube_Server'){
                             sh '''
                                 echo $SonarQube_Server
-                                ${SCANNER_HOME}/bin/sonar-scanner -version
+                                ${SCANNER_HOME}/bin/sonar-scanner --version
                                 ${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectName=wordsmith -Dsonar.projectKey=wordsmith -Dsonar.sources=. -Dsonar.java.bninaries=./api/
                             '''
 
