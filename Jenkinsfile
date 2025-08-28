@@ -73,7 +73,9 @@ pipeline{
                 }
                 stage('qualitygate'){
                     steps{
-                        echo ' this is the quality gate stage'
+                        script{
+                            waitForQualityGate()
+                        }
                     }
                 }
                 stage('Build'){
