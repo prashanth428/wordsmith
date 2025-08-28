@@ -31,7 +31,7 @@ pipeline{
                     agent{
                         docker{
                             image 'golang:alpine'
-                            args '-v $HOME/.ssh:/root/.ssh -v $(pwd):/app'
+                            args '-v $HOME/.ssh:/root/.ssh'
                             reuseNode true
                         }
                     }
