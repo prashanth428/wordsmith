@@ -77,7 +77,7 @@ pipeline{
                         }
                     }
                 }
-                stage('Build-api'){
+                stage('compile-web'){
                     environment {
                         GOCACHE = "${WORKSPACE}/.go-cache" // Or any other writable path within the workspace
                     }
@@ -90,9 +90,9 @@ pipeline{
                     }
                     steps{
                         sh '''
-                            cd api
-                            go build dispatcher.go
-                            go install
+                        go version
+                        cd web
+                        go build dispatcher.go
                         '''
                     }
                 }
