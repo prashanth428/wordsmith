@@ -107,7 +107,7 @@ pipeline{
                     steps{
                         sh '''
                             cd api
-                            mvn ci
+                            mvn clean install
                             mvn package
                             cd ..
                         '''
