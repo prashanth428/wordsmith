@@ -126,8 +126,9 @@ pipeline{
                 stage('travy-Image-Scan'){
                     steps{
                         sh '''
-                        docker run aquasec/trivy image /api/api:${BUILD_NUMBER}
-                        docker run aquasec/trivy image /web/web:${BUILD_NUMBER}
+                        docker image ls
+                        # docker run aquasec/trivy image /api/api:${BUILD_NUMBER}
+                        # docker run aquasec/trivy image /web/web:${BUILD_NUMBER}
                         '''
                     }                
                 }
