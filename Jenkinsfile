@@ -84,7 +84,7 @@ pipeline{
                     steps{
                         sh '''
                             cd api
-                            go build
+                            go build dispatcher.go
                             go install
                         '''
                     }
