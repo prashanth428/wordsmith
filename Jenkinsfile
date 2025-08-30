@@ -10,7 +10,6 @@ pipeline{
                     }                
                 }
                 
-
                 stage('Compaile'){
                 parallel{
                     stage('compile-api'){
@@ -78,9 +77,31 @@ pipeline{
                         }
                     }
                 }
-                stage('Build'){
+                stage('Build-api'){
+                    environment {
+                        GOCACHE = "${WORKSPACE}/.go-cache" // Or any other writable path within the workspace
+                    }
                     steps{
-                        echo ' this is the build stage'
+                        sh '''
+                            go build
+                            go install
+                        '''
+                    }
+                }
+                stage('compile-api'){
+                        agent {
+                            docker {
+                                image 'maven:3.8.5-openjdk-17'
+                                reuseNode true
+                            }
+                        }
+                    steps{
+                        sh '''
+                            cd api
+                            mvn ci
+                            mvn package
+                            cd ..
+                        '''
                     }
                 }
                 stage('create athe docker image'){
