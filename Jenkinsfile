@@ -127,8 +127,8 @@ pipeline{
                     steps{
                         sh '''
                         docker image ls
-                        # docker run aquasec/trivy image /api/api:${BUILD_NUMBER}
-                        # docker run aquasec/trivy image /web/web:${BUILD_NUMBER}
+                        docker run aquasec/trivy image api:${BUILD_NUMBER}
+                        docker run aquasec/trivy image web:${BUILD_NUMBER}
                         '''
                     }                
                 }
