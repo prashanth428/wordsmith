@@ -93,6 +93,7 @@ pipeline{
                         go version
                         cd web
                         go build dispatcher.go
+                        go install
                         '''
                     }
                 }
