@@ -123,7 +123,7 @@ pipeline{
                         '''
                     }
                 }
-                stage('travy-FS-scan'){
+                stage('travy-Image-Scan'){
                     steps{
                         sh '''
                         docker run aquasec/trivy image api:${BUILD_NUMBER}
