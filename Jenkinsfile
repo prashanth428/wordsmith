@@ -83,6 +83,7 @@ pipeline{
                     }
                     steps{
                         sh '''
+                            cd api
                             go build
                             go install
                         '''
