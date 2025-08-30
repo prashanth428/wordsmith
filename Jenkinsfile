@@ -113,11 +113,15 @@ pipeline{
                         '''
                     }
                 }
-                stage('create athe docker image'){
+                stage('Docker Image Build'){
                     steps{
-                        echo ' this is the docker build stage'
+                        sh '''
+                        cd api
+                        docker build -t api:${BUILD_NUMBER}
+                        cd ../web
+                        docker build -t web:${BUILD_NUMBER}
+                        '''
                     }
                 }
-
         }
 }
