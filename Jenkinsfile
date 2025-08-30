@@ -81,6 +81,13 @@ pipeline{
                     environment {
                         GOCACHE = "${WORKSPACE}/.go-cache" // Or any other writable path within the workspace
                     }
+                    agent{
+                        docker{
+                            image 'golang:alpine3.21'
+                            args '-v $HOME/.ssh:/root/.ssh'
+                            reuseNode true
+                        }
+                    }
                     steps{
                         sh '''
                             cd api
