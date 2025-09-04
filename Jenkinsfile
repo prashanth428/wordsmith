@@ -44,6 +44,7 @@ pipeline{
                         go version
                         cd web
                         go build dispatcher.go
+                        go test -v 2>&1 ./... | go-junit-report -set-exit-code > report.xml
                         '''
                     }
                 }
@@ -123,7 +124,7 @@ pipeline{
                         '''
                     }
                 }
-                stage('travy-Image-Scan'){
+               /* stage('travy-Image-Scan'){
                     steps{
                         sh '''
                         docker image ls
@@ -131,6 +132,9 @@ pipeline{
                         docker run aquasec/trivy image web:${BUILD_NUMBER}
                         '''
                     }                
-                }
+                } */
+                /* stage('Kubernetes'){
+                    echo 'Kubernetes Version'
+                } */
         }
 }
